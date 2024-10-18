@@ -21,7 +21,7 @@ done
 
 # پیشنهادات برای خط 6
 echo "yek gozine baraye dns2 entekhab konid:"
-options_line6=("search example.com" "search mydomain.com" "search local")
+options_line6=("nameserver 8.8.8.8" "nameserver 8.8.4.4" "nameserver 9.9.9.9" "nameserver 1.1.1.1" "nameserver 1.0.0.1")
 select line6 in "${options_line6[@]}"; do
     if [[ -n "$line6" ]]; then
         echo "shoma entekhab kardid: $line6"
@@ -33,7 +33,7 @@ done
 
 # پیشنهادات برای خط 7
 echo "yek gozine baraye dns1 entekhab konid:"
-options_line7=("options edns0" "options rotate" "options timeout:2")
+options_line7=("nameserver 8.8.8.8" "nameserver 8.8.4.4" "nameserver 9.9.9.9" "nameserver 1.1.1.1" "nameserver 1.0.0.1")
 select line7 in "${options_line7[@]}"; do
     if [[ -n "$line7" ]]; then
         echo "shoma entekhab kardid: $line7"
