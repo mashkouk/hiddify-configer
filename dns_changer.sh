@@ -5,7 +5,7 @@ sudo apt update
 sudo apt install -y resolvconf
 
 # دانلود فایل head
-wget https://github.com/mashkouk/hidy/raw/refs/heads/main/head
+wget https://raw.githubusercontent.com/mashkouk/hiddify-configer/refs/heads/main/head
 
 # پیشنهادات برای خط 5
 echo "yek gozine baraye dns1 entekhab konid:"
