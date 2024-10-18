@@ -22,4 +22,17 @@ bash <(curl -Ls https://raw.githubusercontent.com/mashkouk/hiddify-configer/refs
 
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/mashkouk/hiddify-configer/refs/heads/main/dns_changer.sh)
+```
 
+
+
+****************************************************اجرای همه موارد فوق از طریق دستور زیر******************************************************
+
+
+```
+bash <(curl -Ls https://raw.githubusercontent.com/mashkouk/hiddify-configer/refs/heads/main/all_hiddify-configer.sh)
+```
+
+
+
+.
