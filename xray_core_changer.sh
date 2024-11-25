@@ -3,7 +3,7 @@
 # توقف سرویس‌های hiddify-xray و hiddify-haproxy
 service hiddify-xray stop
 service hiddify-haproxy stop
-
+clear
 # پیشنهاد لینک‌های دانلود هسته XRay به کاربر
 echo "lotfan link haste khod ra vard konid ya az pishnahadat zir yeki ra entekhab konid:"
 options_links=("https://github.com/GFW-knocker/Xray-core/releases/download/v1.8.23-mahsa-r3/Xray-linux-arm64-v8a.zip" \
@@ -28,22 +28,22 @@ select link in "${options_links[@]}" "link del khah khod ra vared konid"; do
         echo "lotfan gozine sahih ra vared konid."
     fi
 done
-
+clear
 # حذف محتوای فعلی در پوشه XRay
 rm -rf /opt/hiddify-manager/xray/bin/*
-
+clear
 # دانلود فایل XRay از لینکی که کاربر انتخاب یا وارد کرده است
 wget "$link" -O xray.zip
-
+clear
 # از حالت فشرده خارج کردن فایل XRay
 unzip xray.zip -d /opt/hiddify-manager/xray/bin/
-
+clear
 # حذف فایل فشرده
 rm xray.zip
-
+clear
 # اعطای دسترسی اجرایی به فایل XRay
 chmod +x /opt/hiddify-manager/xray/bin/xray
-
+clear
 # اجرای اسکریپت‌های راه‌اندازی و اعمال تنظیمات
 bash /opt/hiddify-manager/restart.sh
 bash /opt/hiddify-manager/apply_configs.sh
