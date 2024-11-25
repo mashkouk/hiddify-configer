@@ -26,7 +26,7 @@ done
 
 # تغییر عبارت tlshello در خط 56
 sed -i "56s/tlshello/$tlshello/" base_xray_config.json.j2
-
+clear
 # پیشنهادات برای جایگزینی عبارت {{ hconfig(ConfigEnum.tls_fragment_size) }} در خط 57
 echo "mizan length fragment ra vared va ya az zir entekhab konid:"
 options_tlsfragment=("5" "4-9" "3-5" "10-19")
@@ -47,7 +47,7 @@ done
 
 # تغییر عبارت {{ hconfig(ConfigEnum.tls_fragment_size) }} در خط 57
 sed -i "57s/{{ hconfig(ConfigEnum.tls_fragment_size) }}/$tlsfragment/" base_xray_config.json.j2
-
+clear
 # پیشنهادات برای جایگزینی عبارت {{ hconfig(ConfigEnum.tls_fragment_sleep) }} در خط 58
 echo "mizan ****interval fragment**** ra vared va ya az zir entekhab konid:"
 options_tlsfragment_sleep=("0" "5" "1-2" "3-5")
@@ -68,7 +68,7 @@ done
 
 # تغییر عبارت {{ hconfig(ConfigEnum.tls_fragment_sleep) }} در خط 58
 sed -i "58s/{{ hconfig(ConfigEnum.tls_fragment_sleep) }}/$tlsfragment_sleep/" base_xray_config.json.j2
-
+clear
 # دانلود فایل user.py
 wget https://raw.githubusercontent.com/hiddify/HiddifyPanel/refs/heads/main/hiddifypanel/models/user.py
 
@@ -78,14 +78,14 @@ read -p "chand gig?: " custom_value
 
 # تغییر مقدار 1000 در خط 71
 sed -i "71s/1000/$custom_value/" user.py
-
+clear
 # پیشنهاد برای تغییر مقدار 90 در خط 72
 echo "mizan rooz pishfarz sakht user jadid ra vared konid be day:"
 read -p "chand rooz?: " custom_value_90
 
 # تغییر مقدار 90 در خط 72
 sed -i "72s/90/$custom_value_90/" user.py
-
+clear
 # کپی کردن فایل user.py به مسیر مورد نظر
 sudo cp user.py /opt/hiddify-manager/.venv/lib/python3.10/site-packages/hiddifypanel/models/
 
@@ -102,3 +102,4 @@ rm -rf base_xray_config.json.j2
 
 # اجرای اسکریپت apply_configs.sh برای اعمال تنظیمات
 bash /opt/hiddify-manager/apply_configs.sh
+clear
