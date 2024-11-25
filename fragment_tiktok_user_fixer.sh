@@ -2,10 +2,10 @@
 
 # دانلود فایل base_xray_config.json.j2
 wget https://raw.githubusercontent.com/hiddify/HiddifyPanel/refs/heads/main/hiddifypanel/panel/user/templates/base_xray_config.json.j2
-
+clear
 # تغییر مقدار خط 15 از true به false
 sed -i '15s/true/false/' base_xray_config.json.j2
-
+clear
 # پیشنهادات برای جایگزینی عبارت tlshello در خط 56
 echo "mizan packets fragment ra vared va ya az zir entekhab konid:"
 options_tlshello=("tlshello" "1-1" "1-2" "1-3")
@@ -71,7 +71,7 @@ sed -i "58s/{{ hconfig(ConfigEnum.tls_fragment_sleep) }}/$tlsfragment_sleep/" ba
 clear
 # دانلود فایل user.py
 wget https://raw.githubusercontent.com/hiddify/HiddifyPanel/refs/heads/main/hiddifypanel/models/user.py
-
+clear
 # پیشنهاد برای تغییر مقدار 1000 در خط 71
 echo "mizan hajm pishfarz sakht user jadid ra vared konid be GB :"
 read -p "chand gig?: " custom_value
@@ -88,18 +88,17 @@ sed -i "72s/90/$custom_value_90/" user.py
 clear
 # کپی کردن فایل user.py به مسیر مورد نظر
 sudo cp user.py /opt/hiddify-manager/.venv/lib/python3.10/site-packages/hiddifypanel/models/
-
+clear
 # پاک کردن فایل user.py از دایرکتوری فعلی
 cd /root
 rm -rf user.py
-
+clear
 # کپی کردن فایل ویرایش‌شده base_xray_config.json.j2 به مسیر مورد نظر
 sudo cp base_xray_config.json.j2 /opt/hiddify-manager/.venv/lib/python3.10/site-packages/hiddifypanel/panel/user/templates/
-
+clear
 # پاک کردن فایل base_xray_config.json.j2 از دایرکتوری فعلی
 cd /root
 rm -rf base_xray_config.json.j2
-
+clear
 # اجرای اسکریپت apply_configs.sh برای اعمال تنظیمات
 bash /opt/hiddify-manager/apply_configs.sh
-clear
