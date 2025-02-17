@@ -3,8 +3,10 @@
 # دانلود فایل base_xray_config.json.j2
 wget https://raw.githubusercontent.com/hiddify/HiddifyPanel/refs/heads/main/hiddifypanel/panel/user/templates/base_xray_config.json.j2
 clear
-# تغییر مقدار خط 15 از true به false
+# تغییر مقدار خط 15-34-6 از true به false
+sed -i '6s/warning/none/' base_xray_config.json.j2
 sed -i '15s/true/false/' base_xray_config.json.j2
+sed -i '34s/true/false/' base_xray_config.json.j2
 clear
 # پیشنهادات برای جایگزینی عبارت tlshello در خط 56
 echo "mizan packets fragment ra vared va ya az zir entekhab konid:"
