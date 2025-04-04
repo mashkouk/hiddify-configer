@@ -3,8 +3,6 @@
 # دانلود فایل base_xray_config.json.j2
 wget https://raw.githubusercontent.com/hiddify/HiddifyPanel/refs/heads/main/hiddifypanel/panel/user/templates/base_xray_config.json.j2
 clear
-# حذف خطوط 3 تا 7
-sed -i '3,7d' base_xray_config.json.j2
 # تغییر مقدار خط 15-34-6 از true به false
 sed -i '15s/true/false/' base_xray_config.json.j2
 # حذف خطوط از 68 به بعد و اضافه کردن مقادیر جدید
@@ -79,6 +77,8 @@ done
 
 # تغییر عبارت {{ hconfig(ConfigEnum.tls_fragment_sleep) }} در خط 58
 sed -i "58s/{{ hconfig(ConfigEnum.tls_fragment_sleep) }}/$tlsfragment_sleep/" base_xray_config.json.j2
+# حذف خطوط 3 تا 7
+sed -i '3,7d' base_xray_config.json.j2
 clear
 # دانلود فایل user.py
 wget https://raw.githubusercontent.com/hiddify/HiddifyPanel/refs/heads/main/hiddifypanel/models/user.py
