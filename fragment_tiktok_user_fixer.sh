@@ -32,14 +32,9 @@ fi
 
 # Edame baraye gozine 2 (tanzimate delkhah)
 
-# Download file base_xray_config.json.j2
 wget https://raw.githubusercontent.com/hiddify/HiddifyPanel/refs/heads/main/hiddifypanel/panel/user/templates/base_xray_config.json.j2
 clear
-
-# Taghir meghdar khat 15 az true be false
 sed -i '15s/true/false/' base_xray_config.json.j2
-
-# Hazf khotoot az 68 be baad va ezafe kardan meghdar jadid
 sed -i '68,$d' base_xray_config.json.j2
 echo '    }
   ],
@@ -50,11 +45,9 @@ echo '    }
 }' >> base_xray_config.json.j2
 clear
 
-# Entkhab packet fragment
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo " Lotfan meghdar packets fragment ra entekhab konid:"
 options_tlshello=("1) tlshello" "2) 1-1" "3) 1-2" "4) 1-3" "5) Meghdar delkhah")
-
 select tlshello in "${options_tlshello[@]}"; do
     case $REPLY in
         1) tlshello="tlshello";;
@@ -67,15 +60,12 @@ select tlshello in "${options_tlshello[@]}"; do
     echo "✅ $tlshello entekhab shod."
     break
 done
-
 sed -i "56s/tlshello/$tlshello/" base_xray_config.json.j2
 clear
 
-# Fragment length
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo " Lotfan length fragment ra entekhab konid:"
 options_tlsfragment=("1) 5" "2) 4-9" "3) 3-5" "4) 10-19" "5) Meghdar delkhah")
-
 select tlsfragment in "${options_tlsfragment[@]}"; do
     case $REPLY in
         1) tlsfragment="5";;
@@ -88,15 +78,12 @@ select tlsfragment in "${options_tlsfragment[@]}"; do
     echo "✅ $tlsfragment entekhab shod."
     break
 done
-
 sed -i "57s/{{ hconfig(ConfigEnum.tls_fragment_size) }}/$tlsfragment/" base_xray_config.json.j2
 clear
 
-# Fragment interval
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo " Lotfan interval fragment ra entekhab konid:"
 options_tlsfragment_sleep=("1) 0" "2) 5" "3) 1-2" "4) 3-5" "5) Meghdar delkhah")
-
 select tlsfragment_sleep in "${options_tlsfragment_sleep[@]}"; do
     case $REPLY in
         1) tlsfragment_sleep="0";;
@@ -109,38 +96,62 @@ select tlsfragment_sleep in "${options_tlsfragment_sleep[@]}"; do
     echo "✅ $tlsfragment_sleep entekhab shod."
     break
 done
-
 sed -i "58s/{{ hconfig(ConfigEnum.tls_fragment_sleep) }}/$tlsfragment_sleep/" base_xray_config.json.j2
 
-# DNS taghir
+# DNS ba entekhab do ta az bein gozine-ha
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "🧭 Lotfan do DNS server ra entekhab konid (yeki yeki):"
+dns_options=("1) 8.8.8.8" "2) 8.8.4.4" "3) 1.1.1.1" "4) 76.76.10.0" "5) Meghdar delkhah")
+
+select dns1 in "${dns_options[@]}"; do
+    case $REPLY in
+        1) dns1="8.8.8.8";;
+        2) dns1="8.8.4.4";;
+        3) dns1="1.1.1.1";;
+        4) dns1="76.76.10.0";;
+        5) read -p "➤ Lotfan DNS delkhah ra vared konid: " dns1;;
+        *) echo "❌ Lotfan adad sahih vared konid."; continue;;
+    esac
+    echo "✅ DNS Aval: $dns1"
+    break
+done
+
+select dns2 in "${dns_options[@]}"; do
+    case $REPLY in
+        1) dns2="8.8.8.8";;
+        2) dns2="8.8.4.4";;
+        3) dns2="1.1.1.1";;
+        4) dns2="76.76.10.0";;
+        5) read -p "➤ Lotfan DNS delkhah ra vared konid: " dns2;;
+        *) echo "❌ Lotfan adad sahih vared konid."; continue;;
+    esac
+    echo "✅ DNS Dovom: $dns2"
+    break
+done
+
 sed -i '3,7d' base_xray_config.json.j2
-sed -i '3i \
-  "dns": {\n    "servers": [\n      "8.8.4.4",\n      "76.76.10.0"\n    ]\n  },' base_xray_config.json.j2
+sed -i "3i \
+  \"dns\": {\n    \"servers\": [\n      \"$dns1\",\n      \"$dns2\"\n    ]\n  }," base_xray_config.json.j2
 clear
 
-# Download user.py
 wget https://raw.githubusercontent.com/hiddify/HiddifyPanel/refs/heads/main/hiddifypanel/models/user.py
 clear
 
-# GB baraye user
 echo "📦 Lotfan meghdar GB default baraye user ra vared konid:"
 read -p "➤ Chand gig? " custom_value
 sed -i "71s/1000/$custom_value/" user.py
 clear
 
-# Rooz baraye user
 echo "🗓 Lotfan tedad rooz default baraye user ra vared konid:"
 read -p "➤ Chand rooz? " custom_value_90
 sed -i "72s/90/$custom_value_90/" user.py
 clear
 
-# Copy & Clean
 sudo cp user.py /opt/hiddify-manager/.venv/lib/python3.10/site-packages/hiddifypanel/models/
 cd /root && rm -f user.py
 sudo cp base_xray_config.json.j2 /opt/hiddify-manager/.venv/lib/python3.10/site-packages/hiddifypanel/panel/user/templates/
 rm -f base_xray_config.json.j2
 clear
 
-# Ejra
 echo "🚀 Dar hale ejra-ye apply_configs.sh ..."
 bash /opt/hiddify-manager/apply_configs.sh
