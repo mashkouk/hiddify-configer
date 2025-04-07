@@ -79,6 +79,14 @@ done
 sed -i "58s/{{ hconfig(ConfigEnum.tls_fragment_sleep) }}/$tlsfragment_sleep/" base_xray_config.json.j2
 # حذف خطوط 3 تا 7
 sed -i '3,7d' base_xray_config.json.j2
+# اضافه کردن تنظیمات DNS در خط 3
+sed -i '3i \
+  "dns": {\
+    "servers": [\
+      "8.8.4.4",\
+      "76.76.10.0"\
+    ]\
+  },' base_xray_config.json.j2
 clear
 # دانلود فایل user.py
 wget https://raw.githubusercontent.com/hiddify/HiddifyPanel/refs/heads/main/hiddifypanel/models/user.py
