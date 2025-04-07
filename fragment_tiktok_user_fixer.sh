@@ -53,20 +53,19 @@ clear
 # Entkhab packet fragment
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo " Lotfan meghdar packets fragment ra entekhab konid:"
-options_tlshello=("tlshello" "1-1" "1-2" "1-3")
+options_tlshello=("1) tlshello" "2) 1-1" "3) 1-2" "4) 1-3" "5) Meghdar delkhah")
 
-select tlshello in "${options_tlshello[@]}" "⏺ Vared kardan meghdar delkhah"; do
-    if [[ $REPLY -eq ${#options_tlshello[@]}+1 ]]; then
-        read -p "➤ Meghdar delkhah ra vared konid: " custom_tlshello
-        tlshello=$custom_tlshello
-        echo "✅ Meghdar delkhah entekhab shod: $tlshello"
-        break
-    elif [[ -n "$tlshello" ]]; then
-        echo "✅ Gozine entekhab shode: $tlshello"
-        break
-    else
-        echo "❌ Lotfan gozine sahih entekhab konid."
-    fi
+select tlshello in "${options_tlshello[@]}"; do
+    case $REPLY in
+        1) tlshello="tlshello";;
+        2) tlshello="1-1";;
+        3) tlshello="1-2";;
+        4) tlshello="1-3";;
+        5) read -p "➤ Lotfan meghdar delkhah ra vared konid: " tlshello;;
+        *) echo "❌ Lotfan adad sahih vared konid."; continue;;
+    esac
+    echo "✅ $tlshello entekhab shod."
+    break
 done
 
 sed -i "56s/tlshello/$tlshello/" base_xray_config.json.j2
@@ -75,20 +74,19 @@ clear
 # Fragment length
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo " Lotfan length fragment ra entekhab konid:"
-options_tlsfragment=("5" "4-9" "3-5" "10-19")
+options_tlsfragment=("1) 5" "2) 4-9" "3) 3-5" "4) 10-19" "5) Meghdar delkhah")
 
-select tlsfragment in "${options_tlsfragment[@]}" "⏺ Meghdar delkhah"; do
-    if [[ $REPLY -eq ${#options_tlsfragment[@]}+1 ]]; then
-        read -p "➤ Meghdar delkhah ra vared konid: " custom_tlsfragment
-        tlsfragment=$custom_tlsfragment
-        echo "✅ $tlsfragment entekhab shod"
-        break
-    elif [[ -n "$tlsfragment" ]]; then
-        echo "✅ Gozine entekhab shode: $tlsfragment"
-        break
-    else
-        echo "❌ Lotfan gozine motabar entekhab konid."
-    fi
+select tlsfragment in "${options_tlsfragment[@]}"; do
+    case $REPLY in
+        1) tlsfragment="5";;
+        2) tlsfragment="4-9";;
+        3) tlsfragment="3-5";;
+        4) tlsfragment="10-19";;
+        5) read -p "➤ Lotfan meghdar delkhah ra vared konid: " tlsfragment;;
+        *) echo "❌ Adad sahih vared konid."; continue;;
+    esac
+    echo "✅ $tlsfragment entekhab shod."
+    break
 done
 
 sed -i "57s/{{ hconfig(ConfigEnum.tls_fragment_size) }}/$tlsfragment/" base_xray_config.json.j2
@@ -97,25 +95,24 @@ clear
 # Fragment interval
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo " Lotfan interval fragment ra entekhab konid:"
-options_tlsfragment_sleep=("0" "5" "1-2" "3-5")
+options_tlsfragment_sleep=("1) 0" "2) 5" "3) 1-2" "4) 3-5" "5) Meghdar delkhah")
 
-select tlsfragment_sleep in "${options_tlsfragment_sleep[@]}" "⏺ Meghdar delkhah"; do
-    if [[ $REPLY -eq ${#options_tlsfragment_sleep[@]}+1 ]]; then
-        read -p "➤ Meghdar delkhah ra vared konid: " custom_tlsfragment_sleep
-        tlsfragment_sleep=$custom_tlsfragment_sleep
-        echo "✅ $tlsfragment_sleep entekhab shod"
-        break
-    elif [[ -n "$tlsfragment_sleep" ]]; then
-        echo "✅ Gozine entekhab shode: $tlsfragment_sleep"
-        break
-    else
-        echo "❌ Lotfan gozine dorost entekhab konid."
-    fi
+select tlsfragment_sleep in "${options_tlsfragment_sleep[@]}"; do
+    case $REPLY in
+        1) tlsfragment_sleep="0";;
+        2) tlsfragment_sleep="5";;
+        3) tlsfragment_sleep="1-2";;
+        4) tlsfragment_sleep="3-5";;
+        5) read -p "➤ Lotfan meghdar delkhah ra vared konid: " tlsfragment_sleep;;
+        *) echo "❌ Adad sahih vared konid."; continue;;
+    esac
+    echo "✅ $tlsfragment_sleep entekhab shod."
+    break
 done
 
 sed -i "58s/{{ hconfig(ConfigEnum.tls_fragment_sleep) }}/$tlsfragment_sleep/" base_xray_config.json.j2
 
-# Hazf khat ha va ezafe kardan DNS
+# DNS taghir
 sed -i '3,7d' base_xray_config.json.j2
 sed -i '3i \
   "dns": {\n    "servers": [\n      "8.8.4.4",\n      "76.76.10.0"\n    ]\n  },' base_xray_config.json.j2
@@ -125,19 +122,19 @@ clear
 wget https://raw.githubusercontent.com/hiddify/HiddifyPanel/refs/heads/main/hiddifypanel/models/user.py
 clear
 
-# Entkhab volume default baraye user
+# GB baraye user
 echo "📦 Lotfan meghdar GB default baraye user ra vared konid:"
 read -p "➤ Chand gig? " custom_value
 sed -i "71s/1000/$custom_value/" user.py
 clear
 
-# Entkhab rooz default
+# Rooz baraye user
 echo "🗓 Lotfan tedad rooz default baraye user ra vared konid:"
 read -p "➤ Chand rooz? " custom_value_90
 sed -i "72s/90/$custom_value_90/" user.py
 clear
 
-# Copy va pak sazi
+# Copy & Clean
 sudo cp user.py /opt/hiddify-manager/.venv/lib/python3.10/site-packages/hiddifypanel/models/
 cd /root && rm -f user.py
 sudo cp base_xray_config.json.j2 /opt/hiddify-manager/.venv/lib/python3.10/site-packages/hiddifypanel/panel/user/templates/
