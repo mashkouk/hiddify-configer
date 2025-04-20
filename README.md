@@ -25,6 +25,16 @@ bash <(curl -Ls https://raw.githubusercontent.com/mashkouk/hiddify-configer/refs
 ```
 
 
+اسکریپت ایجاد کرونجاب اعمال تغییرات اتومات
+
+
+اجرا با دستور زیر
+
+```
+bash <(curl -Ls https://raw.githubusercontent.com/mashkouk/hiddify-configer/refs/heads/main/cronjob_apply_config.sh)
+```
+
+
 
 *****اجرای همه موارد فوق از طریق دستور زیر******
 
