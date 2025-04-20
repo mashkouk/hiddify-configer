@@ -7,7 +7,7 @@ while true; do
     echo "----------------------------------------------"
     echo "1) Didan cron job haye feli"
     echo "2) Virayesh cron job ha"
-    echo "3) Ezafe kardan cron job jadid"
+    echo "3) Ezafe kardan cron job emal taghirat automatic"
     echo "4) Khorooj"
     echo "----------------------------------------------"
     echo -n "🔸 Entekhab shoma (1-4): "
